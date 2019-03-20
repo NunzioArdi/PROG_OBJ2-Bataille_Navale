@@ -28,18 +28,19 @@ public class Case {
 		this.y = posy;
 	}
 
+	@SuppressWarnings("unused")
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj) //obj est Case et x,y egal
+		if (this == obj)
 			return true;
-		if (this == null) //obj est null
+		if (this == null) 
 			return false;
-		if (getClass() != obj.getClass()) //obj est non Case
+		if (getClass() != obj.getClass())
 			return false;
-		Case other = (Case) obj; //convert obj en Case
-		if (x != other.x) //obj.x diff (non exist?) de x
+		Case other = (Case) obj;
+		if (x != other.x)
 			return false;
-		if (y != other.y) //obj.y diff (non exist?) de y
+		if (y != other.y)
 			return false;
 		return true;
 	}

@@ -2,29 +2,28 @@
  * @author romain
  *
  */
+@SuppressWarnings("unused")
 public class Bateau {
-	@SuppressWarnings("unused")
 	private int vie;
+	private int taille;
 	private boolean mort;
 	private String nom;
-	private String dir;
-	private int taille;
+	private int dir;
+	private int posX;
+	private int posY;
 	
 	
 	/**
-	 * @param vie
-	 * @param mort
-	 * @param nom
-	 * @param dir
-	 * @param taille
+	 * Constructeur du bateau
+	 * @param n le nom du bateau
+	 * @param d la direction (0 =  Horizontal, 1 = Vertical)
+	 * @param t La taille du bateau (nombre de case prise) 
 	 */
-	public Bateau(int vie, boolean mort, String nom, String dir, int taille) {
-		super();
-		this.vie = vie;
-		this.mort = false;
-		this.nom = " ";
-		this.dir = dir;
-		this.taille = taille;
+	public Bateau(String n, int d, int t) {
+		this.vie = t;
+		this.nom = n;
+		this.dir = d;
+		this.taille = t;
 	}
 	
 	/**
