@@ -14,6 +14,9 @@ public class Grille{
 	public Grille(int l, int h) {
 		this.hauteur=h;
 		this.largeur=l;
+		if (l<10 && h <10) {
+			l=10;h=10;
+		}
 		this.list = new ArrayList<Case>();
 		for (int i = 0; i < this.hauteur; i++) {
 			for (int j = 0; j < this.largeur; j++) {

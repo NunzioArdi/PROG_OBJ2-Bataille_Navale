@@ -29,15 +29,6 @@ public class Case {
 	}
 
 	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int res = 1;
-		res = prime * res + x;
-		res = prime * res + y;
-		return res;
-	}
-
-	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) //obj est Case et x,y egal
 			return true;
