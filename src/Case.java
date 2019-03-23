@@ -1,20 +1,28 @@
 
 /**
  * @author NunzioArdi
- * @version dev0.1 Classe reprsentant les cases de la grille
+ * @version dev0.2
+ * Classe reprsentant les cases de la grille
  */
 public class Case {
 	/**
 	 * Position x de la case
 	 */
 	private int x;
+	
 	/**
-	 * Pasotion y de la case
+	 * Position y de la case
 	 */
 	private int y;
 
+	/**
+	 * Le bateau sur la case ou null si pas Bateau
+	 */
 	private Bateau bat;
 
+	/**
+	 * true si la case a été tiré
+	 */
 	private boolean impact;
 
 	/**
@@ -27,7 +35,14 @@ public class Case {
 		this.x = posx;
 		this.y = posy;
 	}
+	
+	public void setBat(Bateau bat) {
+		this.bat = bat;
+	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
 	@SuppressWarnings("unused")
 	@Override
 	public boolean equals(Object obj) {
@@ -45,6 +60,9 @@ public class Case {
 		return true;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		if (impact) {
@@ -56,7 +74,30 @@ public class Case {
 			if (bat == null)
 				return ".";
 			else
-				return "�";
+				return "�";
 		}
 	}
+
+	/**
+	 * @return the bat
+	 */
+	public Bateau getBat() {
+		return bat;
+	}
+
+	/**
+	 * @return the impact
+	 */
+	public boolean isImpact() {
+		return impact;
+	}
+
+	/**
+	 * @param impact the impact to set
+	 */
+	public void setImpact(boolean impact) {
+		this.impact = impact;
+	}
+	
+	
 }

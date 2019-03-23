@@ -1,58 +1,51 @@
 /**
  * @author romain
- *
+ * @author NunzioArdi
+ * @version dev0.2
  */
-@SuppressWarnings("unused")
+
 public class Bateau {
+	@SuppressWarnings("unused")
+	private String nom;
 	private int vie;
 	private int taille;
+	@SuppressWarnings("unused")
 	private boolean mort;
-	private String nom;
-	private int dir;
-	private int posX;
-	private int posY;
 	
 	
 	/**
 	 * Constructeur du bateau
 	 * @param n le nom du bateau
-	 * @param d la direction (0 =  Horizontal, 1 = Vertical)
-	 * @param t La taille du bateau (nombre de case prise) 
+	 * @param t La taille du bateau (nombre de case prise)
 	 */
-	public Bateau(String n, int d, int t) {
-		this.vie = t;
+	public Bateau(String n, int t) {
 		this.nom = n;
-		this.dir = d;
 		this.taille = t;
+		this.vie = t;
 	}
 	
 	/**
-	 * @return
+	 * Indique si le bateau est mort
+	 * @return true si le bateau n'a plus de vie
 	 */
 	public boolean estMort() {
-		if (this.vie == 0) {
-			mort=true;
-			
-			
-			
-			
-		}else {
-			this.taille--;
-			mort=false;
-		
-		
-		}
-		return mort;
-		
+		if (this.vie == 0) return true;
+		return false;
 	}
 	
 	/**
-	 * @return
+	 * Donne la vie du Bateau en pourcentage
+	 * @return la vie en %
 	 */
-	public int getTaille() {
-		return this.taille;
+	public int getVie() {
+		return this.vie/this.taille*100;
 	}
 	
-	
-
+	/**
+	 * Donne la taille du Bateau
+	 * @return la taille
+	 */
+	public int getTaille() {
+		return taille;
+	}
 }
