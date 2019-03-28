@@ -17,7 +17,7 @@ public abstract class Partie implements Serializable {
 	 */
 	protected int y;
 
-	private List<Bateau> bateaux;
+	protected List<Bateau> bateaux;
 
 	
 	/**
@@ -48,7 +48,7 @@ public abstract class Partie implements Serializable {
 	 * 
 	 * @param j Le joueur
 	 */
-	public void addBateauxJoueur(Joueur j) {
+	protected void addBateauxJoueur(Joueur j) {
 		int i = 0;
 
 		while (i < this.bateaux.size()) {
@@ -75,7 +75,7 @@ public abstract class Partie implements Serializable {
 	 * Méthode définisant la taille de la grille de jeu.<br>
 	 * Une éxception est levée tant que la taille de la grille sera invalide.
 	 */
-	public void setTailleGrille() {
+	protected void setTailleGrille() {
 		Scanner sc = new Scanner(System.in);
 		System.out.print("Donner la taille de la grille (x et y): ");
 		x = sc.nextInt();
@@ -86,7 +86,7 @@ public abstract class Partie implements Serializable {
 	/**
 	 * Méthode définisant le nom d'un ou plusieur joueur.
 	 */
-	public abstract void getPseudo();
+	protected abstract void getPseudo();
 
 	/**
 	 * Méthode qui lance la partie
