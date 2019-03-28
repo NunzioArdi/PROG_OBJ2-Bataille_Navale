@@ -1,28 +1,25 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author NunzioArdi
- * @version dev0.1
  * Classe représentant un joueur
  */
 @SuppressWarnings("unused")
-public class Joueur {
+public class Joueur implements Serializable{
 	private int vie;
 	private List<Bateau> listBateau;
 	private Grille bateau;
 	private Grille tire;
-	private String nomJoueur;
+	private String pseudo;
 	
 	
 	/**
-	 * Contructeur du joueur avec ses grilles
-	 * @param v
-	 * @param name
-	 * @param t
+	 * Contructeur du joueur avec ses 2 grilles et ses 5 points de vie
+	 * @param x longeur grille
+	 * @param y largeur grille
 	 */
-	public Joueur(String name, int x, int y) {
-		this.nomJoueur = name;
+	public Joueur(int x, int y) {
 		this.bateau = new Grille(x,y);
 		this.tire = new Grille(x,y);
 		this.listBateau = new ArrayList<Bateau>();
@@ -76,6 +73,10 @@ public class Joueur {
 	 */
 	public int getVie() {
 		return vie;
+	}
+	
+	public void setPseudo(String string1) {
+		this.pseudo = string1;
 	}
 
 }
