@@ -1,10 +1,12 @@
+import java.io.Serializable;
 
 /**
  * @author NunzioArdi
  * @version dev0.2
  * Classe reprsentant les cases de la grille
  */
-public class Case {
+@SuppressWarnings("serial")
+public class Case implements Serializable {
 	/**
 	 * Position x de la case
 	 */
@@ -34,6 +36,7 @@ public class Case {
 	public Case(int posx, int posy) {
 		this.x = posx;
 		this.y = posy;
+		impact=false;
 	}
 	
 	public void setBat(Bateau bat) {
@@ -95,8 +98,8 @@ public class Case {
 	/**
 	 * @param impact the impact to set
 	 */
-	public void setImpact(boolean impact) {
-		this.impact = impact;
+	public void setImpact() {
+		this.impact = true;
 	}
 	
 	

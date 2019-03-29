@@ -6,6 +6,7 @@ import java.util.Scanner;
 /**
  * Classe donnant le modèle pour les différent mode de jeu
  */
+@SuppressWarnings("serial")
 public abstract class Partie implements Serializable {
 	/**
 	 * Attribut de la longueur de la grille
@@ -41,7 +42,7 @@ public abstract class Partie implements Serializable {
 	}
 
 	/**
-	 * Méthode servant à ajouter au joueur désirer les bateaux au coordonée voulu
+	 * Méthode servant à ajouter au joueur désirer les bateaux aux coordonées voulu
 	 * par celui-ci.<br>
 	 * Des éxceptions sont levées tant que la direction et/ou les coordonées indiqué seront
 	 * invalide.
@@ -66,6 +67,8 @@ public abstract class Partie implements Serializable {
 			sc.close();
 			
 			j.addBatt(bateaux.get(i), x, y, dir);
+			
+			j.getBateau().toString();
 			i++;
 		}
 
@@ -86,7 +89,13 @@ public abstract class Partie implements Serializable {
 	/**
 	 * Méthode définisant le nom d'un ou plusieur joueur.
 	 */
-	protected abstract void getPseudo();
+	protected String getPseudo() {
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Donné votre pseudo : ");
+		String tmp = sc.next();
+		sc.close();
+		return tmp;
+	}
 
 	/**
 	 * Méthode qui lance la partie

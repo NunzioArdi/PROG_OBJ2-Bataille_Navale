@@ -1,3 +1,4 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +11,8 @@ import java.util.List;
  * @author Utilisateur
  *
  */
-public class Grille {
+@SuppressWarnings("serial")
+public class Grille implements Serializable {
 	/**
 	 * la liste des cases composan la grille
 	 */
@@ -125,4 +127,13 @@ public class Grille {
 		}
 		return res;
 	}
+	
+	
+	
+	public void setCase(int x, int y, Case tmp) {
+		int i = this.list.indexOf(new Case(x,y));
+		this.list.set(i, tmp);
+	}
+	
+	
 }
