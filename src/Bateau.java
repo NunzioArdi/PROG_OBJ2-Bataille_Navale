@@ -48,4 +48,8 @@ public class Bateau {
 	public int getTaille() {
 		return taille;
 	}
+	
+	public void touche() {
+		this.vie--;
+	}
 }
