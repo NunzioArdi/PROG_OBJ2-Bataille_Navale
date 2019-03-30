@@ -20,33 +20,26 @@ public class Grille implements Serializable {
 	/**
 	 * La largeur de la grille
 	 */
-	private int largeur;
+	private int longueur;
 	/**
 	 * La hauteur de la grille
 	 */
-	private int hauteur;
+	private int largeur;
 
 	/**
 	 * Constructeur de la grille
 	 * 
-	 * @param l la largeur
-	 * @param h la hauteur
+	 * @param lon la longueur
+	 * @param lar la largeur
 	 */
-	public Grille(int l, int h) {
+	public Grille(int lon, int lar) {
 		// TODO les if devrond devenir des exceptions dans le jeu
-		if (l < 10)
-			l = 10;
-		if (h > 10)
-			h = 10;
-		if (l > 30)
-			l = 30;
-		if (h > 30)
-			h = 30;
-		this.hauteur = h;
-		this.largeur = l;
+
+		this.longueur = lon;
+		this.largeur = lar;
 		this.list = new ArrayList<Case>();
-		for (int i = 0; i < this.hauteur; i++) {
-			for (int j = 0; j < this.largeur; j++) {
+		for (int i = 0; i < this.largeur; i++) {
+			for (int j = 0; j < this.longueur; j++) {
 				this.list.add(new Case(i, j));
 			}
 		}
@@ -68,9 +61,9 @@ public class Grille implements Serializable {
 	public String toString() {
 		Case tmp = null;
 		String s = "";
-		for (int i = 0; i < this.hauteur; i++) {
+		for (int i = 0; i < this.longueur; i++) {
 			for (int j = 0; j < this.largeur; j++) {
-				tmp = getCase(i, j);
+				tmp = getCase(j, i);
 				s = s + tmp.toString() + " ";
 			}
 			s = s + "\n";
@@ -84,11 +77,10 @@ public class Grille implements Serializable {
 	 * @param b   le bateau
 	 * @param x   posX
 	 * @param y   posY
-	 * @param dir la direction du bateau
+	 * @param dir la direction du bateau (0=horizontal)
 	 * @return
 	 */
 	public boolean addBateau(Bateau b, int x, int y, boolean dir) {
-		if (positionValide(b, x, y, dir)) {
 			for (int i = 0; i < b.getTaille(); i++) {
 				Case tmp = new Case(x, y);
 				int index = this.list.indexOf(tmp);
@@ -100,35 +92,7 @@ public class Grille implements Serializable {
 					x++;
 			}
 			return true;
-		}
-		return false;
 	}
-
-	/**
-	 * 
-	 * //TODO créé exception lorsque positionValide return false
-	 * 
-	 * @param b
-	 * @param x
-	 * @param y
-	 * @param dir
-	 * @return
-	 */
-	public boolean positionValide(Bateau b, int x, int y, boolean dir) {
-		int i = 0;
-		boolean res = true;
-		while (i < b.getTaille() && res) {
-			res = list.contains(new Case(x, y));
-			if (dir)
-				y++;
-			else
-				x++;
-			i++;
-		}
-		return res;
-	}
-	
-	
 	
 	public void setCase(int x, int y, Case tmp) {
 		int i = this.list.indexOf(new Case(x,y));
