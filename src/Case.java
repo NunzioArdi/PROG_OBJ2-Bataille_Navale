@@ -77,7 +77,7 @@ public class Case implements Serializable {
 			if (bat == null)
 				return ".";
 			else
-				return "�";
+				return "B";
 		}
 	}
 
