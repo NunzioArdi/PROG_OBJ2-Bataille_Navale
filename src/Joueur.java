@@ -45,7 +45,7 @@ public class Joueur implements Serializable {
 	/**
 	 * @param x
 	 * @param y
-	 * @return true si attauqe faite, false si non (remplacer par Exception)
+	 * @return true si attauqe faite, false si non
 	 */
 	public boolean attack(int x, int y) {
 		Case tmp = this.tire.getCase(x, y);
@@ -53,9 +53,17 @@ public class Joueur implements Serializable {
 			return false;
 		} else {
 			tmp.setImpact();
-			this.tire.setCase(x,y, tmp);
-			return true;
+			Bateau b = this.bateau.getCase(x, y).getBat();
+			if (b!=null) {
+				tmp.setBat(b);
+				b.touche();
+				this.tire.setCase(x, y, tmp);
+				if(b.estMort()) {
+					this.vie--;
+				}
+			}
 		}
+		return true;
 	}
 
 	public void coulee() {
@@ -87,4 +95,11 @@ public class Joueur implements Serializable {
 		this.pseudo = string1;
 	}
 
+	
+	//DEBUG
+	public void getVieListBateau() {
+		for (int i = 0; i < this.listBateau.size(); i++) {
+			System.out.println(listBateau.get(i).getVie() + listBateau.get(i).getNom());
+		}
+	}
 }
