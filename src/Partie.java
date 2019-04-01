@@ -20,7 +20,6 @@ public abstract class Partie implements Serializable {
 
 	protected List<Bateau> bateaux;
 
-	
 	/**
 	 * Constructeur initialisant la liste des modèle de bateaux.
 	 */
@@ -30,22 +29,22 @@ public abstract class Partie implements Serializable {
 	}
 
 	/**
-	 * Méthode interne servant à initialisé le modèle de la liste des bateaux que les
-	 * joueurs peuvent avoir.
+	 * Méthode interne servant à initialisé le modèle de la liste des bateaux que
+	 * les joueurs peuvent avoir.
 	 */
 	private void list() {
 		bateaux.add(new Bateau("Porte-avions", 5));
 		bateaux.add(new Bateau("Cuirassé ", 4));
 		bateaux.add(new Bateau("Croiseur", 3));
 		bateaux.add(new Bateau("Sous-marin", 3));
-		bateaux.add(new Bateau("Destroyer ", 2));
+		bateaux.add(new Bateau("Destroyer", 2));
 	}
 
 	/**
 	 * Méthode servant à ajouter au joueur désirer les bateaux aux coordonées voulu
 	 * par celui-ci.<br>
-	 * Des éxceptions sont levées tant que la direction et/ou les coordonées indiqué seront
-	 * invalide.
+	 * Des éxceptions sont levées tant que la direction et/ou les coordonées indiqué
+	 * seront invalide.
 	 * 
 	 * @param j Le joueur
 	 */
@@ -55,20 +54,20 @@ public abstract class Partie implements Serializable {
 		while (i < this.bateaux.size()) {
 			boolean dir = false;
 			System.out.println("Donner la direction du bateau: \n \tHorizontal=0\n\tVertical=1");
+			@SuppressWarnings("resource")
 			Scanner sc = new Scanner(System.in);
 			int tmp = sc.nextInt();
 			if (tmp == 1)
 				dir = true;
-			
+
 			System.out.print("Donner la position du bateau\nx=");
 			x = sc.nextInt();
 			System.out.print("Donner la position du bateau\ny=");
 			y = sc.nextInt();
-			sc.close();
-			
+
 			j.addBatt(bateaux.get(i), x, y, dir);
-			
-			j.getBateau().toString();
+
+			System.out.println(j.getBateau().toString());
 			i++;
 		}
 
@@ -79,21 +78,21 @@ public abstract class Partie implements Serializable {
 	 * Une éxception est levée tant que la taille de la grille sera invalide.
 	 */
 	protected void setTailleGrille() {
+		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
 		System.out.print("Donner la taille de la grille (x et y): ");
 		x = sc.nextInt();
 		y = sc.nextInt();
-		sc.close();
 	}
 
 	/**
 	 * Méthode définisant le nom d'un ou plusieur joueur.
 	 */
 	protected String getPseudo() {
+		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
 		System.out.print("Donné votre pseudo : ");
 		String tmp = sc.next();
-		sc.close();
 		return tmp;
 	}
 
