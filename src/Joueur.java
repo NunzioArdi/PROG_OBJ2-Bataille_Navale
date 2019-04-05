@@ -3,24 +3,41 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Classe représentant un joueur
+ * Classe représentant un joueur.
  */
 @SuppressWarnings({ "unused", "serial" })
 public class Joueur implements Serializable {
+	/**
+	 * La vie du joueur.
+	 */
 	private int vie;
+	/**
+	 * La liste des Bateaux du Joueur.
+	 */
 	private List<Bateau> listBateau;
+	/**
+	 * La Grille des Bateaux du Joueur.
+	 */
 	private Grille bateau;
+	/**
+	 * La Grille de tire du Joueur.
+	 */
 	private Grille tire;
+	/**
+	 * Le pseudonyme du joueur.
+	 */
 	private String pseudo;
 
 	/**
-	 * Contructeur du joueur avec ses 2 grilles et ses 5 points de vie
+	 * Constructeur du Joueur avec ses 2 Grilles et 5 points de vie.
 	 * 
 	 * @param x longeur grille
 	 * @param y largeur grille
-	 * @throws CoordoneeException Une exception est levé si les paramètre donnéepour construire la grille sont invalide
+	 * @throws CoordoneeException Cette Exception est levée si les valeurs de la
+	 *                            taille de Grille sont inférieurs au MIN ou
+	 *                            supérieurs au MAX
 	 */
-	public Joueur(int x, int y) throws CoordoneeException {
+	public Joueur(int x, int y) throws CoordoneeException{
 		this.bateau = new Grille(x, y);
 		this.tire = new Grille(x, y);
 		this.listBateau = new ArrayList<Bateau>();
@@ -28,7 +45,7 @@ public class Joueur implements Serializable {
 	}
 
 	/**
-	 * Indique si la joueur est toujours en vie
+	 * Méthode indique si le Joueur est toujours en vie.
 	 * 
 	 * @return true si en vie
 	 */
@@ -38,14 +55,32 @@ public class Joueur implements Serializable {
 		return false;
 	}
 
+	/**
+	 * Méthode ajoutant un Bateau à la liste de Bateau du joueur et place se bateau
+	 * sur la Grille Bateau.
+	 * 
+	 * @param b   le bateau à ajouter
+	 * @param x   l'abscisse de la position
+	 * @param y   l'ordonnée de la position
+	 * @param dir la direction du bateau (0=horizontal/1=verticale)
+	 * @return
+	 * @throws CoordoneeException Cette Exception est levée si les paramètres de coordonnées
+	 *                            donnés dépassent la taille maximum MAX ou la taille minimum MIN de la Grille, si
+	 *                            les coordonnées font dépasser le Bateau de Grille,
+	 *                            si un Bateau se trouve déjà aux coordonnées indiquées
+	 * @throws DirectionException Cette Exception est levée quand le paramètre de
+	 *                            direction donné n'est pas ce qui est attendu
+	 */
 	public void addBatt(Bateau b, int x, int y, int dir) throws CoordoneeException, DirectionException {
 		if (this.bateau.addBateau(b, x, y, dir))
 			listBateau.add(b);
 	}
 
 	/**
-	 * @param x
-	 * @param y
+	 * Méthode permetant au Joueur d'attaquer.
+	 * 
+	 * @param x   l'abscisse de la position
+	 * @param y   l'ordonnée de la position
 	 * @return true si attauqe faite, false si non
 	 */
 	public boolean attack(int x, int y) {
@@ -55,11 +90,11 @@ public class Joueur implements Serializable {
 		} else {
 			tmp.setImpact();
 			Bateau b = this.bateau.getCase(x, y).getBat();
-			if (b!=null) {
+			if (b != null) {
 				tmp.setBat(b);
 				b.touche();
 				this.tire.setCase(x, y, tmp);
-				if(b.estMort()) {
+				if (b.estMort()) {
 					this.vie--;
 				}
 			}
@@ -72,6 +107,8 @@ public class Joueur implements Serializable {
 	}
 
 	/**
+	 * Méthode retournant la Grille de Bateau.
+	 * 
 	 * @return the bateau
 	 */
 	public Grille getBateau() {
@@ -79,6 +116,8 @@ public class Joueur implements Serializable {
 	}
 
 	/**
+	 * Méthode retournant la Grille de Tire.
+	 * 
 	 * @return the tire
 	 */
 	public Grille getTire() {
@@ -86,18 +125,24 @@ public class Joueur implements Serializable {
 	}
 
 	/**
+	 * Méthode retournant la vie du Joueur.
+	 * 
 	 * @return the vie
 	 */
 	public int getVie() {
 		return vie;
 	}
 
-	public void setPseudo(String string1) {
-		this.pseudo = string1;
+	/**
+	 * Méthode qui donne un nom au Joueur.
+	 * 
+	 * @param string le pseudo
+	 */
+	public void setPseudo(String string) {
+		this.pseudo = string;
 	}
 
-	
-	//DEBUG
+	// DEBUG
 	public void getVieListBateau() {
 		for (int i = 0; i < this.listBateau.size(); i++) {
 			System.out.println(listBateau.get(i).getVie() + listBateau.get(i).getNom());

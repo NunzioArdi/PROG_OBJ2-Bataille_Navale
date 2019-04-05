@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * Classe donnant le modèle pour les différent mode de jeu
+ * Classe abstraite donnant le modèle pour créer les différent mode de jeu.
  */
 @SuppressWarnings("serial")
 public abstract class Partie implements Serializable {
@@ -19,10 +19,13 @@ public abstract class Partie implements Serializable {
 	 */
 	protected int y;
 
+	/**
+	 * La liste des Bateaux que chaque joueur peux avoir
+	 */
 	protected List<Bateau> bateaux;
 
 	/**
-	 * Constructeur initialisant la liste des modèle de bateaux.
+	 * Constructeur de la partie. Initialise la liste des modèle de bateaux.
 	 */
 	public Partie() {
 		bateaux = new ArrayList<Bateau>();
@@ -30,8 +33,8 @@ public abstract class Partie implements Serializable {
 	}
 
 	/**
-	 * Méthode interne servant à initialisé le modèle de la liste des bateaux que
-	 * les joueurs peuvent avoir.
+	 * Méthode interne servant à remplir le modèle de la liste des bateaux que les
+	 * joueurs peuvent avoir.
 	 */
 	private void list() {
 		bateaux.add(new Bateau("Porte-avions", 5));
@@ -42,10 +45,10 @@ public abstract class Partie implements Serializable {
 	}
 
 	/**
-	 * Méthode servant à ajouter au joueur désirer les bateaux aux coordonées voulu
-	 * par celui-ci.<br>
-	 * Des éxceptions sont levées tant que la direction et/ou les coordonées indiqué
-	 * seront invalide.
+	 * Méthode servant à ajouter au joueur désirer les bateaux aux coordonées
+	 * voulues par celui-ci.<br>
+	 * Des exceptions sont levées et ratrapppées tant que la direction et/ou les
+	 * coordonées indiquées seront invalides.
 	 * 
 	 * @param j Le joueur
 	 */
@@ -80,8 +83,7 @@ public abstract class Partie implements Serializable {
 	}
 
 	/**
-	 * Méthode définisant la taille de la grille de jeu.<br>
-	 * Une éxception est levée tant que la taille de la grille sera invalide.
+	 * Méthode définisant la taille de la grille de jeu.
 	 */
 	protected void setTailleGrille() {
 		boolean stop = false;
@@ -92,16 +94,15 @@ public abstract class Partie implements Serializable {
 				System.out.print("Donner la taille de la grille (x et y): ");
 				x = sc.nextInt();
 				y = sc.nextInt();
-				stop=true;
+				stop = true;
 			} catch (InputMismatchException e) {
-				//e.printStackTrace();
-				System.out.println(e+": Un nombre est attendu\n");
+				System.out.println(e + ": Un nombre est attendu\n");
 			}
 		}
 	}
 
 	/**
-	 * Méthode définisant le nom d'un ou plusieur joueur.
+	 * Méthode définisant le pseudo d'un Joueur.
 	 */
 	protected String getPseudo() {
 		@SuppressWarnings("resource")
@@ -112,7 +113,7 @@ public abstract class Partie implements Serializable {
 	}
 
 	/**
-	 * Méthode qui lance la partie
+	 * Méthode lancant la partie.
 	 */
 	public abstract void lancerParie();
 

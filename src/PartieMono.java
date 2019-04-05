@@ -1,14 +1,13 @@
 import java.util.Scanner;
 
 /**
- * Classe Représentant le type de Partie en mono-joueur.
- *
+ * Classe représentant une Partie en mono-joueur.
  */
 @SuppressWarnings({ "serial", "unused" })
 public class PartieMono extends Partie {
 
 	/**
-	 * Attribut reliant le joueur à la partie(sauvegarde)
+	 * Le joueur de la partie.
 	 */
 	private Joueur player;
 
@@ -21,7 +20,6 @@ public class PartieMono extends Partie {
 
 	@Override
 	public void lancerParie() {
-		// Initialisation
 		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
 		boolean stop = false;
@@ -36,6 +34,8 @@ public class PartieMono extends Partie {
 				e.printStackTrace();
 			}
 		}
+
+		// Initialisation
 		String pseudo = this.getPseudo();
 		this.player.setPseudo(pseudo);
 		this.addBateauxJoueur(this.player);

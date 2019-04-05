@@ -1,34 +1,32 @@
 import java.io.Serializable;
 
 /**
- * @author NunzioArdi
- * @version dev0.2
- * Classe reprsentant les cases de la grille
+ * Classe représentant les cases de la grille.
  */
 @SuppressWarnings("serial")
 public class Case implements Serializable {
 	/**
-	 * Position x de la case
+	 * Attribut de la position x de la case sur une Grille.
 	 */
 	private int x;
-	
+
 	/**
-	 * Position y de la case
+	 * Attribut de la position y de la case sur une Grille.
 	 */
 	private int y;
 
 	/**
-	 * Le bateau sur la case ou null si pas Bateau
+	 * Attribut permettant de lier un Bateau sur une Case.
 	 */
 	private Bateau bat;
 
 	/**
-	 * true si la case a été tiré
+	 * Attribut permettant d'indiquer si la Case à déjà été tirée.
 	 */
 	private boolean impact;
 
 	/**
-	 * Constructeur de la case
+	 * Constructeur de la Case. Sans Bateau et sans impact.
 	 * 
 	 * @param posx x
 	 * @param posy y
@@ -36,14 +34,21 @@ public class Case implements Serializable {
 	public Case(int posx, int posy) {
 		this.x = posx;
 		this.y = posy;
-		impact=false;
+		impact = false;
 	}
-	
+
+	/**
+	 * Méthode permettant de lier un Bateau à une case.
+	 * 
+	 * @param bat
+	 */
 	public void setBat(Bateau bat) {
 		this.bat = bat;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@SuppressWarnings("unused")
@@ -51,7 +56,7 @@ public class Case implements Serializable {
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (this == null) 
+		if (this == null)
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
@@ -63,7 +68,9 @@ public class Case implements Serializable {
 		return true;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
@@ -82,25 +89,29 @@ public class Case implements Serializable {
 	}
 
 	/**
-	 * @return the bat
+	 * Méthode retournant le Bateau de la Case.
+	 * 
+	 * @return un Bateau
 	 */
 	public Bateau getBat() {
 		return bat;
 	}
 
 	/**
-	 * @return the impact
+	 * Méthode indiquant si la Case a déjà été tirée.
+	 * 
+	 * @return true si déjà tirée
 	 */
 	public boolean isImpact() {
 		return impact;
 	}
 
 	/**
+	 * Méthode indiquant que la Case a été tirée.
+	 * 
 	 * @param impact the impact to set
 	 */
 	public void setImpact() {
 		this.impact = true;
 	}
-	
-	
 }
