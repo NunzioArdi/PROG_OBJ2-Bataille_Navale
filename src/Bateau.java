@@ -1,9 +1,6 @@
 /**
- * @author romain
- * @author NunzioArdi
- * @version dev0.2
+ * Classe représentant les Bateaux
  */
-
 public class Bateau {
 	
 	/* (non-Javadoc)

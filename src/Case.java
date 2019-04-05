@@ -108,8 +108,6 @@ public class Case implements Serializable {
 
 	/**
 	 * Méthode indiquant que la Case a été tirée.
-	 * 
-	 * @param impact the impact to set
 	 */
 	public void setImpact() {
 		this.impact = true;

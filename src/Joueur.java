@@ -39,7 +39,7 @@ public class Joueur implements Serializable {
 	 *                            taille de Grille sont inférieurs au MIN ou
 	 *                            supérieurs au MAX
 	 */
-	public Joueur(int x, int y) throws CoordoneeException{
+	public Joueur(int x, int y) throws CoordoneeException {
 		this.bateau = new Grille(x, y);
 		this.tire = new Grille(x, y);
 		this.listBateau = new ArrayList<Bateau>();
@@ -65,11 +65,11 @@ public class Joueur implements Serializable {
 	 * @param x   l'abscisse de la position
 	 * @param y   l'ordonnée de la position
 	 * @param dir la direction du bateau (0=horizontal/1=verticale)
-	 * @return
-	 * @throws CoordoneeException Cette Exception est levée si les paramètres de coordonnées
-	 *                            donnés dépassent la taille maximum MAX ou la taille minimum MIN de la Grille, si
-	 *                            les coordonnées font dépasser le Bateau de Grille,
-	 *                            si un Bateau se trouve déjà aux coordonnées indiquées
+	 * @throws CoordoneeException Cette Exception est levée si les paramètres de
+	 *                            coordonnées donnés dépassent la taille maximum MAX
+	 *                            ou la taille minimum MIN de la Grille, si les
+	 *                            coordonnées font dépasser le Bateau de Grille, si
+	 *                            un Bateau se trouve déjà aux coordonnées indiquées
 	 * @throws DirectionException Cette Exception est levée quand le paramètre de
 	 *                            direction donné n'est pas ce qui est attendu
 	 */
@@ -81,8 +81,8 @@ public class Joueur implements Serializable {
 	/**
 	 * Méthode permetant au Joueur d'attaquer.
 	 * 
-	 * @param x   l'abscisse de la position
-	 * @param y   l'ordonnée de la position
+	 * @param x l'abscisse de la position
+	 * @param y l'ordonnée de la position
 	 * @return true si attauqe faite, false si non
 	 */
 	public boolean attack(int x, int y) {
