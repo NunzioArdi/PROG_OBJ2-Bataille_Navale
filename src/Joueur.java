@@ -18,8 +18,9 @@ public class Joueur implements Serializable {
 	 * 
 	 * @param x longeur grille
 	 * @param y largeur grille
+	 * @throws CoordoneeException Une exception est levé si les paramètre donnéepour construire la grille sont invalide
 	 */
-	public Joueur(int x, int y) {
+	public Joueur(int x, int y) throws CoordoneeException {
 		this.bateau = new Grille(x, y);
 		this.tire = new Grille(x, y);
 		this.listBateau = new ArrayList<Bateau>();
@@ -37,7 +38,7 @@ public class Joueur implements Serializable {
 		return false;
 	}
 
-	public void addBatt(Bateau b, int x, int y, boolean dir) {
+	public void addBatt(Bateau b, int x, int y, int dir) throws CoordoneeException, DirectionException {
 		if (this.bateau.addBateau(b, x, y, dir))
 			listBateau.add(b);
 	}

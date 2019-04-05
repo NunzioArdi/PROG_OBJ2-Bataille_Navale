@@ -1,5 +1,6 @@
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -52,23 +53,28 @@ public abstract class Partie implements Serializable {
 		int i = 0;
 
 		while (i < this.bateaux.size()) {
-			boolean dir = false;
 			System.out.println("Donner la direction du bateau: \n \tHorizontal=0\n\tVertical=1");
-			@SuppressWarnings("resource")
-			Scanner sc = new Scanner(System.in);
-			int tmp = sc.nextInt();
-			if (tmp == 1)
-				dir = true;
 
-			System.out.print("Donner la position du bateau\nx=");
-			x = sc.nextInt();
-			System.out.print("Donner la position du bateau\ny=");
-			y = sc.nextInt();
-
-			j.addBatt(bateaux.get(i), x, y, dir);
+			try {
+				@SuppressWarnings("resource")
+				Scanner sc = new Scanner(System.in);
+				int dir = sc.nextInt();
+				System.out.print("Donner la position du bateau\nx=");
+				x = sc.nextInt();
+				System.out.print("Donner la position du bateau\ny=");
+				y = sc.nextInt();
+				j.addBatt(bateaux.get(i), x, y, dir);
+				i++;
+			} catch (CoordoneeException e) {
+				e.printStackTrace();
+			} catch (DirectionException e) {
+				e.printStackTrace();
+			} catch (InputMismatchException e) {
+				e.printStackTrace();
+				System.out.println("Un nombre est attendu\n");
+			}
 
 			System.out.println(j.getBateau().toString());
-			i++;
 		}
 
 	}
@@ -78,11 +84,20 @@ public abstract class Partie implements Serializable {
 	 * Une éxception est levée tant que la taille de la grille sera invalide.
 	 */
 	protected void setTailleGrille() {
-		@SuppressWarnings("resource")
-		Scanner sc = new Scanner(System.in);
-		System.out.print("Donner la taille de la grille (x et y): ");
-		x = sc.nextInt();
-		y = sc.nextInt();
+		boolean stop = false;
+		while (!stop) {
+			try {
+				@SuppressWarnings("resource")
+				Scanner sc = new Scanner(System.in);
+				System.out.print("Donner la taille de la grille (x et y): ");
+				x = sc.nextInt();
+				y = sc.nextInt();
+				stop=true;
+			} catch (InputMismatchException e) {
+				//e.printStackTrace();
+				System.out.println(e+": Un nombre est attendu\n");
+			}
+		}
 	}
 
 	/**
