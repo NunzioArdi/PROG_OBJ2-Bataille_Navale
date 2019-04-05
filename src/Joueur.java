@@ -72,8 +72,8 @@ public class Joueur implements Serializable {
 	 *                            direction donné n'est pas ce qui est attendu
 	 */
 	public void addBatt(Bateau b, int x, int y, int dir) throws CoordoneeException, DirectionException {
-		if (this.bateau.addBateau(b, x, y, dir))
-			listBateau.add(b);
+		this.bateau.addBateau(b, x, y, dir);
+		listBateau.add(b);
 	}
 
 	/**

@@ -92,7 +92,6 @@ public class Grille implements Serializable {
 	 * @param x   l'abscisse de la position
 	 * @param y   l'ordonnée de la position
 	 * @param dir la direction du bateau (0=horizontal/1=verticale)
-	 * @return
 	 * @throws CoordoneeException Cette Exception est levée si les paramètres de coordonnées
 	 *                            donnés dépassent la taille maximum MAX ou la taille minimum MIN de la Grille, si
 	 *                            les coordonnées font dépasser le Bateau de Grille,
@@ -100,7 +99,7 @@ public class Grille implements Serializable {
 	 * @throws DirectionException Cette Exception est levée quand le paramètre de
 	 *                            direction donné n'est pas ce qui est attendu
 	 */
-	public boolean addBateau(Bateau b, int x, int y, int dir) throws CoordoneeException, DirectionException {
+	public void addBateau(Bateau b, int x, int y, int dir) throws CoordoneeException, DirectionException {
 		// Vérificaton des paramètres
 		if (x < 0)
 			throw new CoordoneeException("position x inférieur à 0");
@@ -136,7 +135,6 @@ public class Grille implements Serializable {
 			else
 				x++;
 		}
-		return true;
 	}
 
 	/**
