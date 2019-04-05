@@ -1,5 +1,7 @@
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -148,4 +150,57 @@ public class Joueur implements Serializable {
 			System.out.println(listBateau.get(i).getVie() + listBateau.get(i).getNom());
 		}
 	}
+
+	/**
+	 * Méthode triant les Bateaux par leur taille
+	 */
+	public void triListeBateauTaille() {
+
+		/**
+		 * Classe interne de méthode servant de classe de comparaison pour la méthode
+		 * sort. Compare la taille des Bateaux et les trie par ordres décroissant.
+		 */
+		class BateauTailleComparator implements Comparator<Bateau> {
+
+			@Override
+			public int compare(Bateau o1, Bateau o2) {
+				int to1 = o1.getTaille();
+				int to2 = o2.getTaille();
+				if (to1 > to2)
+					return -1;
+				if (to1 < to2)
+					return 1;
+				return 0;
+			}
+		}
+
+		Collections.sort(this.listBateau, new BateauTailleComparator());
+	}
+
+	/**
+	 * Méthode triant les Bateaux par leur taille
+	 */
+	public void triListeBateauVie() {
+
+		/**
+		 * Classe interne de méthode servant de classe de comparaison pour la méthode
+		 * sort. Compare la vie des Bateaux et les trie par ordres décroissant.
+		 */
+		class BateauVieComparator implements Comparator<Bateau> {
+
+			@Override
+			public int compare(Bateau o1, Bateau o2) {
+				double to1 = o1.getVie();
+				double to2 = o2.getVie();
+				if (to1 > to2)
+					return -1;
+				if (to1 < to2)
+					return 1;
+				return 0;
+			}
+		}
+
+		Collections.sort(this.listBateau, new BateauVieComparator());
+	}
+
 }
