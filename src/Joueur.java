@@ -107,39 +107,6 @@ public class Joueur implements Serializable {
 				}
 			}
 		}
-
-	/**
-	 * Méthode retournant la Grille de Bateau.
-	 * 
-	 * @return the bateau
-	 */
-	public Grille getBateau() {
-		return bateau;
-	}
-
-	/**
-	 * Méthode retournant la Grille de Tire.
-	 * 
-	 * @return the tire
-	 */
-	public Grille getTire() {
-		return tire;
-	}
-
-	/**
-	 * Méthode retournant la vie du Joueur.
-	 * 
-	 * @return the vie
-	 */
-	public int getVie() {
-		return vie;
-	}
-
-	// DEBUG
-	public void getVieListBateau() {
-		for (int i = 0; i < this.listBateau.size(); i++) {
-			System.out.println(listBateau.get(i).getVie() + listBateau.get(i).getNom());
-		}
 	}
 
 	/**
@@ -192,6 +159,44 @@ public class Joueur implements Serializable {
 		}
 
 		Collections.sort(this.listBateau, new BateauVieComparator());
+	}
+	
+	
+	
+	/**
+	 * Méthode retournant la Grille de Bateau.
+	 * 
+	 * @return the bateau
+	 */
+	public Grille getBateau() {
+		return bateau;
+	}
+
+	/**
+	 * Méthode retournant la Grille de Tire.
+	 * 
+	 * @return the tire
+	 */
+	public Grille getTire() {
+		return tire;
+	}
+
+	/**
+	 * Méthode retournant la vie du Joueur.
+	 * 
+	 * @return the vie
+	 */
+	public int getVie() {
+		return vie;
+	}
+	
+	/**
+	 * Méthode retournant la liste de Bateaux du Joueur. 
+	 * 
+	 * @return the listBateau
+	 */
+	public List<Bateau> getListBateau() {
+		return listBateau;
 	}
 
 	/**
