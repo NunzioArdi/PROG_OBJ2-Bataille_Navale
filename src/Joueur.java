@@ -88,7 +88,8 @@ public class Joueur implements Serializable {
 	 * 
 	 * @param x l'abscisse de la position
 	 * @param y l'ordonnée de la position
-	 * @return true si attauqe faite, false si non
+	 * @throws CoordoneeException Cette Exception est lancé si les coordonnées sont
+	 *                            sur une case déjà tirée
 	 */
 	public void attack(int x, int y) throws CoordoneeException {
 		Case tmp = this.tire.getCase(x, y);
