@@ -72,12 +72,11 @@ public abstract class Partie implements Serializable {
 				j.addBatt(bateaux.get(i), x, y, dir);
 				i++;
 			} catch (CoordoneeException e) {
-				e.printStackTrace();
+				System.out.println(e);
 			} catch (DirectionException e) {
-				e.printStackTrace();
+				System.out.println(e);
 			} catch (InputMismatchException e) {
-				e.printStackTrace();
-				System.out.println("Un nombre est attendu\n");
+				System.out.println(e+": Un nombre est attendu\n");
 			}
 
 			System.out.println(j.getBateau().toString());
