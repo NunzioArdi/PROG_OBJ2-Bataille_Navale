@@ -1,5 +1,7 @@
 import java.util.Scanner;
 
+import Exceptions.CoordoneeException;
+
 /**
  * Classe représentant une Partie en mono-joueur.
  */

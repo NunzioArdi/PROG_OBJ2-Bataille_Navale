@@ -4,6 +4,9 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
+import Exceptions.CoordoneeException;
+import Exceptions.DirectionException;
+
 /**
  * Classe abstraite donnant le modèle pour créer les différent mode de jeu.
  */

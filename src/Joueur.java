@@ -4,6 +4,9 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import Exceptions.CoordoneeException;
+import Exceptions.DirectionException;
+
 /**
  * Classe représentant un joueur.
  */

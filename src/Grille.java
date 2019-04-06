@@ -2,6 +2,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import Exceptions.CoordoneeException;
+import Exceptions.DirectionException;
+
 /**
  * Classe représentant une grille de combat. Une grille est composé de Cases.
  */
