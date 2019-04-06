@@ -115,6 +115,22 @@ public abstract class Partie implements Serializable {
 		return tmp;
 	}
 
+	public String AfficherListeBateau(Joueur j, int type) {
+		String res="";
+		if(type==1) {
+			for (int i = 0; i < j.getListBateau().size(); i++) {
+				res = res+"-"+j.getListBateau().get(i).getNom()+": "+j.getListBateau().get(i).getVie()+"% de vie\n";
+			}
+		
+		}else {
+			for (int i = 0; i < j.getListBateau().size(); i++) {
+				res = res+"-"+j.getListBateau().get(i).getNom()+" "+j.getListBateau().get(i).getTaille()+"\n";
+			}
+			
+		}
+		return res;
+	}
+	
 	/**
 	 * Méthode lancant la partie.
 	 */
