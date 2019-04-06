@@ -35,15 +35,17 @@ public class Joueur implements Serializable {
 	 * 
 	 * @param x longeur grille
 	 * @param y largeur grille
+	 * @param pseudo un pseudonyme
 	 * @throws CoordoneeException Cette Exception est levée si les valeurs de la
 	 *                            taille de Grille sont inférieurs au MIN ou
 	 *                            supérieurs au MAX
 	 */
-	public Joueur(int x, int y) throws CoordoneeException {
+	public Joueur(int x, int y, String pseudo) throws CoordoneeException {
 		this.bateau = new Grille(x, y);
 		this.tire = new Grille(x, y);
 		this.listBateau = new ArrayList<Bateau>();
 		this.vie = 5;
+		this.pseudo=pseudo;
 	}
 
 	/**
@@ -135,15 +137,6 @@ public class Joueur implements Serializable {
 		return vie;
 	}
 
-	/**
-	 * Méthode qui donne un nom au Joueur.
-	 * 
-	 * @param string le pseudo
-	 */
-	public void setPseudo(String string) {
-		this.pseudo = string;
-	}
-
 	// DEBUG
 	public void getVieListBateau() {
 		for (int i = 0; i < this.listBateau.size(); i++) {
@@ -203,4 +196,13 @@ public class Joueur implements Serializable {
 		Collections.sort(this.listBateau, new BateauVieComparator());
 	}
 
+	/**
+	 * Méthode retournant le pseudo du Joueur.
+	 * 
+	 * @return the pseudo
+	 */
+	public String getPseudo() {
+		return pseudo;
+	}
+	
 }

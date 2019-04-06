@@ -23,12 +23,13 @@ public class PartieMono extends Partie {
 		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
 		boolean stop = false;
-
+		String pseudo = this.getPseudo();
+		
 		// Tant que coordonée incorrecte
 		while (!stop) {
 			try {
 				this.setTailleGrille();
-				this.player = new Joueur(x, y);
+				this.player = new Joueur(x, y, pseudo);
 				stop = true;
 			} catch (CoordoneeException e) {
 				e.printStackTrace();
@@ -36,8 +37,6 @@ public class PartieMono extends Partie {
 		}
 
 		// Initialisation
-		String pseudo = this.getPseudo();
-		this.player.setPseudo(pseudo);
 		this.addBateauxJoueur(this.player);
 
 		// Démarage partie
