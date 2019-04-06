@@ -7,7 +7,13 @@ import java.util.Scanner;
 public class Principale {
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {
-		int id;
+		Partie game = new PartieMono();
+		game.lancerParie();
+}
+}
+	
+	/*
+	 		int id;
 		String txt = "";
 		int itxt = 0;
 		// Nouvelle ou reprise de partie ?
@@ -25,7 +31,7 @@ public class Principale {
 			// Type de partie
 			while (itxt != 1)
 				itxt = sc.nextInt();
-			sc.close();
+			
 			System.out.println("Touchée coulé en mono-joueur"
 					+ "Le joueur place ces bateaux et doit détruir les détruir pour gagner");
 			id = 1;
@@ -35,4 +41,3 @@ public class Principale {
 		}
 
 	}
-}
