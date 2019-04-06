@@ -87,10 +87,10 @@ public class Joueur implements Serializable {
 	 * @param y l'ordonnée de la position
 	 * @return true si attauqe faite, false si non
 	 */
-	public boolean attack(int x, int y) {
+	public void attack(int x, int y) throws CoordoneeException {
 		Case tmp = this.tire.getCase(x, y);
 		if (tmp.isImpact()) {
-			return false;
+			throw new CoordoneeException("Zone déjà tiré");
 		} else {
 			tmp.setImpact();
 			Bateau b = this.bateau.getCase(x, y).getBat();
@@ -103,12 +103,6 @@ public class Joueur implements Serializable {
 				}
 			}
 		}
-		return true;
-	}
-
-	public void coulee() {
-		vie--;
-	}
 
 	/**
 	 * Méthode retournant la Grille de Bateau.
