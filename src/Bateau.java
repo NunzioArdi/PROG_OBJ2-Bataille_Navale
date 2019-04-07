@@ -46,8 +46,6 @@ public class Bateau implements Serializable {
 	private String nom;
 	private int vie;
 	private int taille;
-	@SuppressWarnings("unused")
-	private boolean mort;
 	
 	
 	/**
