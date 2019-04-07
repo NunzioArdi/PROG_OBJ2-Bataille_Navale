@@ -8,8 +8,11 @@ import Exceptions.DirectionException;
 /**
  * Classe représentant une grille de combat. Une grille est composé de Cases.
  */
-@SuppressWarnings("serial")
 public class Grille implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2200767690615613920L;
 	/**
 	 * La liste des Cases composant la Grille.
 	 */

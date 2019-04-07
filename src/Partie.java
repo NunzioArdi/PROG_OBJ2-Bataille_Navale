@@ -10,8 +10,12 @@ import Exceptions.DirectionException;
 /**
  * Classe abstraite donnant le modèle pour créer les différent mode de jeu.
  */
-@SuppressWarnings("serial")
 public abstract class Partie implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4406769469769370072L;
+
 	/**
 	 * Attribut de la longueur de la grille
 	 */
@@ -76,7 +80,7 @@ public abstract class Partie implements Serializable {
 			} catch (DirectionException e) {
 				System.out.println(e);
 			} catch (InputMismatchException e) {
-				System.out.println(e+": Un nombre est attendu\n");
+				System.out.println(e + ": Un nombre est attendu\n");
 			}
 
 			System.out.println(j.getBateau().toString());
@@ -115,24 +119,32 @@ public abstract class Partie implements Serializable {
 	}
 
 	public String AfficherListeBateau(Joueur j, int type) {
-		String res="";
-		if(type==1) {
+		String res = "";
+		if (type == 1) {
 			for (int i = 0; i < j.getListBateau().size(); i++) {
-				res = res+"-"+j.getListBateau().get(i).getNom()+": "+j.getListBateau().get(i).getVie()+"% de vie\n";
+				res = res + "-" + j.getListBateau().get(i).getNom() + ": " + j.getListBateau().get(i).getVie()
+						+ "% de vie\n";
 			}
-		
-		}else {
+
+		} else {
 			for (int i = 0; i < j.getListBateau().size(); i++) {
-				res = res+"-"+j.getListBateau().get(i).getNom()+" "+j.getListBateau().get(i).getTaille()+"\n";
+				res = res + "-" + j.getListBateau().get(i).getNom() + " " + j.getListBateau().get(i).getTaille() + "\n";
 			}
-			
+
 		}
 		return res;
 	}
-	
+
+
 	/**
 	 * Méthode lancant la partie.
 	 */
 	public abstract void lancerParie();
+	
+	public abstract void initialiserPartie();
+
+	public abstract void restaurerPartie(String locate);
+	
+	protected abstract void sauvegerderPartie(String locate);
 
 }

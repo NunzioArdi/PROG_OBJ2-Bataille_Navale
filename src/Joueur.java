@@ -10,8 +10,11 @@ import Exceptions.DirectionException;
 /**
  * Classe représentant un joueur.
  */
-@SuppressWarnings({ "unused", "serial" })
 public class Joueur implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8770095404759687317L;
 	/**
 	 * La vie du joueur.
 	 */

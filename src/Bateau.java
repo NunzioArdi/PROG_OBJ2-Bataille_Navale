@@ -1,8 +1,16 @@
+import java.io.Serializable;
+
 /**
  * Classe représentant les Bateaux
  */
-public class Bateau {
+public class Bateau implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1371518752398993181L;
+
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */

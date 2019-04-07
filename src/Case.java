@@ -3,8 +3,12 @@ import java.io.Serializable;
 /**
  * Classe représentant les cases de la grille.
  */
-@SuppressWarnings("serial")
 public class Case implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 269968396375602404L;
+
 	/**
 	 * Attribut de la position x de la case sur une Grille.
 	 */

@@ -1,43 +1,58 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
-
 
 /**
  * Classe principale lançant le jeu
  */
 public class Principale {
-	@SuppressWarnings("unused")
+	@SuppressWarnings("resource")
 	public static void main(String[] args) {
-		Partie game = new PartieMono();
-		game.lancerParie();
-}
-}
-	
-	/*
-	 		int id;
+
+		int id = 0;
 		String txt = "";
-		int itxt = 0;
-		// Nouvelle ou reprise de partie ?
 		Scanner sc = new Scanner(System.in);
-		System.out.print("Nouvelle partie ? (Oui ou Non)");
-		txt = sc.next().toUpperCase();
-		while (!(txt.equals("YES") || txt.equals("OUI") || txt.equals("Y") || txt.equals("NO") || txt.equals("NON")
-				|| txt.equals("N")))
-			txt = sc.next().toUpperCase();
 
-		// Nouvelle partie
-		if (txt.equals("YES") || !txt.equals("OUI") || !txt.equals("Y")) {
-			System.out.println("Choisissez votre mode de jeu : " + " 1) Mono-joueur");
+		while (id != 1) {
+			System.out.println("Choisissez votre mode de jeu : " + "\n\t1) Mono-joueur");
+			try {
+				id = Integer.parseInt(sc.next());
+				if (id != 1)
+					System.out.println("Mauvais paramètre");
+			} catch (NumberFormatException e) {
+				System.out.println(e + ": Un chiffre est attendu\n");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 
-			// Type de partie
-			while (itxt != 1)
-				itxt = sc.nextInt();
-			
-			System.out.println("Touchée coulé en mono-joueur"
-					+ "Le joueur place ces bateaux et doit détruir les détruir pour gagner");
-			id = 1;
+		System.out.print("Nouvelle partie (Oui ou Non) ?");
+		try {
+			while (!(txt.equals("OUI") || txt.equals("NON"))) {
+				txt = sc.next().toUpperCase();
+			}
+		} catch (InputMismatchException e) {
+			System.out.println(e + ": Une chaine de charactères est attendu\n");
+		}
 
-			Partie game = new PartieMono();
-			game.lancerParie();
+		if (txt.equals("OUI")) {
+			if (id == 1) {
+				System.out.println("Dans e mode de jeu, le joueur place ces bateaux et doit les détruir pour gagner");
+				Partie game = new PartieMono();
+				game.initialiserPartie();
+				game.lancerParie();
+			}
+		} else {
+			if (id == 1) {
+				Partie game = new PartieMono();
+				System.out.println("Selectionner le fichier de sauvegarde correcpondant au mode de jeu choisis");
+				String locate = sc.next();
+				game.restaurerPartie(locate);
+				game.lancerParie();
+			}
 		}
 
 	}
+
+}
+
+//javadoc */.java -d ../doc -encoding UTF-8 -docencoding UTF-8 -charset UTF-8 -html5

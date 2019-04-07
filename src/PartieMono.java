@@ -1,4 +1,11 @@
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 import Exceptions.CoordoneeException;
@@ -20,9 +27,8 @@ public class PartieMono extends Partie {
 	public PartieMono() {
 		super();
 	}
-
-	@Override
-	public void lancerParie() {
+	
+	public void initialiserPartie() {
 		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
 		boolean stop = false;
@@ -41,21 +47,27 @@ public class PartieMono extends Partie {
 
 		// Initialisation
 		this.addBateauxJoueur(this.player);
+	}
 
+	@Override
+	public void lancerParie() {
+		@SuppressWarnings("resource")
+		Scanner sc = new Scanner(System.in);
+		boolean stop = false;
 		// Démarage partie
 		System.out.println("Le jeu commence");
-		while (player.isLife()) {
-			@SuppressWarnings("resource")
-			Scanner sc1 = new Scanner(System.in);
-
+		while (player.isLife()&&!stop) {
 			int action = -1;
-			while (action != 0 && action != 1 && action != 2 && action != 3 && action != 4) {
+			while (action != 0 && action != 1 && action != 2 && action != 3 && action != 4 && action!=5) {
 				System.out.println("Choisiser une action:\n" 
 						+ "\t1) Continuer à jouer\n" 
 						+ "\t2) Sauvegarder"
 						+ "\t3) Afficher la vie Bateau"
-						+ "\t3) Affiche la taille des bateaux");
+						+ "\t4) Affiche la taille des bateaux"
+						+ "\t5) Quitter");
 				try {
+					@SuppressWarnings("resource")
+					Scanner sc1 = new Scanner(System.in);
 					action = sc1.nextInt();
 				}catch (InputMismatchException e) {
 					System.out.println(e + ": Un nombre est attendu\n");
@@ -69,27 +81,67 @@ public class PartieMono extends Partie {
 				try {
 					player.attack(posX, posY);
 				} catch (CoordoneeException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				System.out.println();
 				System.out.println(player.getTire().toString());
 			}
 			else if (action==2) {
-				
+				System.out.println("Entrer un chemin de sauvegarde ");
+				String locate = sc.next();
+				this.sauvegerderPartie(locate);
 			}
 			else if(action==3) {
 				player.triListeBateauVie();
 				System.out.println(AfficherListeBateau(player,1));
 			}
-			else {
+			else if(action==4) {
 				player.triListeBateauTaille();
 				System.out.println(AfficherListeBateau(player,2));
+			}
+			else if (action==5) {
+				stop=true;
 			}
 
 			
 		}
 
 		System.out.println("Gagner");
+	}
+	
+	
+	@SuppressWarnings("unchecked")
+	public void restaurerPartie(String locate) {
+		try {
+			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(locate));
+			player = (Joueur) (ois.readObject());
+			x = (Integer) (ois.readObject());
+			y = (Integer) (ois.readObject());
+			bateaux = (ArrayList<Bateau>) (ois.readObject());
+			ois.close();
+		} catch (IOException e) {
+			System.out.println("erreur d’E/S");
+			e.printStackTrace();
+		} catch (Exception e) {
+			System.out.println("erreur hors E/S");
+			e.printStackTrace();
+		}
+	}
+	
+	protected void sauvegerderPartie(String locate) {
+		try {
+			ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(locate));
+			oos.writeObject(player);
+			oos.writeObject(x);
+			oos.writeObject(y);
+			oos.writeObject(bateaux);
+			oos.close();
+		} catch (IOException e) {
+			System.out.println("erreur d’E/S");
+			e.printStackTrace();
+		} catch (Exception e) {
+			System.out.println("erreur hors E/S");
+			e.printStackTrace();
+		}
 	}
 }
