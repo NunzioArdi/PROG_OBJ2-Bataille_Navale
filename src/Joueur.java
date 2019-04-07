@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import Exceptions.BateauException;
 import Exceptions.CoordoneeException;
 import Exceptions.DirectionException;
 
@@ -80,8 +81,9 @@ public class Joueur implements Serializable {
 	 *                            un Bateau se trouve déjà aux coordonnées indiquées
 	 * @throws DirectionException Cette Exception est levée quand le paramètre de
 	 *                            direction donné n'est pas ce qui est attendu
+	 * @throws BateauException 
 	 */
-	public void addBatt(Bateau b, int x, int y, int dir) throws CoordoneeException, DirectionException {
+	public void addBatt(Bateau b, int x, int y, int dir) throws CoordoneeException, DirectionException, BateauException {
 		this.bateau.addBateau(b, x, y, dir);
 		listBateau.add(b);
 	}

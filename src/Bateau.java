@@ -1,5 +1,7 @@
 import java.io.Serializable;
 
+import Exceptions.BateauException;
+
 /**
  * Classe représentant les Bateaux
  */
@@ -52,9 +54,13 @@ public class Bateau implements Serializable {
 	 * Constructeur du bateau
 	 * @param n le nom du bateau
 	 * @param t La taille du bateau (nombre de case prise)
+	 * @throws BateauException 
 	 */
-	public Bateau(String n, int t) {
+	public Bateau(String n, int t) throws BateauException {
 		this.nom = n;
+		if(t<1) {
+			throw new BateauException("Taille inférieur à 1");
+		}
 		this.taille = t;
 		this.vie = t;
 	}

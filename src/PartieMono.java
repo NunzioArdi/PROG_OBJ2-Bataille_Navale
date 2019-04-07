@@ -8,6 +8,7 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
+import Exceptions.BateauException;
 import Exceptions.CoordoneeException;
 
 /**
@@ -22,13 +23,14 @@ public class PartieMono extends Partie {
 	private Joueur player;
 
 	/**
+	 * @throws BateauException 
 	 * @see Partie#Partie()
 	 */
-	public PartieMono() {
+	public PartieMono() throws BateauException {
 		super();
 	}
 	
-	public void initialiserPartie() {
+	public void initialiserPartie() throws BateauException {
 		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
 		boolean stop = false;

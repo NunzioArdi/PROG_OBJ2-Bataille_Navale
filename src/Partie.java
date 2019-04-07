@@ -4,6 +4,7 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
+import Exceptions.BateauException;
 import Exceptions.CoordoneeException;
 import Exceptions.DirectionException;
 
@@ -33,8 +34,9 @@ public abstract class Partie implements Serializable {
 
 	/**
 	 * Constructeur de la partie. Initialise la liste des modèle de bateaux.
+	 * @throws BateauException 
 	 */
-	public Partie() {
+	public Partie() throws BateauException {
 		bateaux = new ArrayList<Bateau>();
 		list();
 	}
@@ -42,8 +44,9 @@ public abstract class Partie implements Serializable {
 	/**
 	 * Méthode interne servant à remplir le modèle de la liste des bateaux que les
 	 * joueurs peuvent avoir.
+	 * @throws BateauException 
 	 */
-	private void list() {
+	private void list() throws BateauException {
 		bateaux.add(new Bateau("Porte-avions", 5));
 		bateaux.add(new Bateau("Cuirassé ", 4));
 		bateaux.add(new Bateau("Croiseur", 3));
@@ -58,12 +61,13 @@ public abstract class Partie implements Serializable {
 	 * coordonées indiquées seront invalides.
 	 * 
 	 * @param j Le joueur
+	 * @throws BateauException 
 	 */
-	protected void addBateauxJoueur(Joueur j) {
+	protected void addBateauxJoueur(Joueur j) throws BateauException {
 		int i = 0;
 
 		while (i < this.bateaux.size()) {
-			System.out.println("Donner la direction du bateau: \n \tHorizontal=0\n\tVertical=1");
+			System.out.println("Donner la direction du bateau: \n\tHorizontal=0\n\tVertical=1");
 
 			try {
 				@SuppressWarnings("resource")
@@ -141,7 +145,7 @@ public abstract class Partie implements Serializable {
 	 */
 	public abstract void lancerParie();
 	
-	public abstract void initialiserPartie();
+	public abstract void initialiserPartie() throws BateauException;
 
 	public abstract void restaurerPartie(String locate);
 	

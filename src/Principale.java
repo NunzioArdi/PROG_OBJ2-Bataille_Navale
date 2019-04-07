@@ -1,11 +1,13 @@
 import java.util.Scanner;
 
+import Exceptions.BateauException;
+
 /**
  * Classe principale lançant le jeu
  */
 public class Principale {
 	@SuppressWarnings("resource")
-	public static void main(String[] args) {
+	public static void main(String[] args) throws BateauException {
 
 		int id = 0;
 		String txt = "";

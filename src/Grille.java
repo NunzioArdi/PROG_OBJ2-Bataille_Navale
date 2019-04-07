@@ -2,6 +2,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import Exceptions.BateauException;
 import Exceptions.CoordoneeException;
 import Exceptions.DirectionException;
 
@@ -98,14 +99,21 @@ public class Grille implements Serializable {
 	 * @param x   l'abscisse de la position
 	 * @param y   l'ordonnée de la position
 	 * @param dir la direction du bateau (0=horizontal/1=verticale)
-	 * @throws CoordoneeException Cette Exception est levée si les paramètres de coordonnées
-	 *                            donnés dépassent la taille maximum MAX ou la taille minimum MIN de la Grille, si
-	 *                            les coordonnées font dépasser le Bateau de Grille,
-	 *                            si un Bateau se trouve déjà aux coordonnées indiquées
+	 * @throws CoordoneeException Cette Exception est levée si les paramètres de
+	 *                            coordonnées donnés dépassent la taille maximum MAX
+	 *                            ou la taille minimum MIN de la Grille, si les
+	 *                            coordonnées font dépasser le Bateau de Grille, si
+	 *                            un Bateau se trouve déjà aux coordonnées indiquées
 	 * @throws DirectionException Cette Exception est levée quand le paramètre de
 	 *                            direction donné n'est pas ce qui est attendu
 	 */
-	public void addBateau(Bateau b, int x, int y, int dir) throws CoordoneeException, DirectionException {
+	public void addBateau(Bateau b, int x, int y, int dir) throws CoordoneeException, DirectionException, BateauException {
+		if(b==null) {
+			throw new BateauException("Ajout d'un Bateau NULL");
+		}
+		else if(b.estMort()) {
+			throw new BateauException("Ajout d'un Bateau mort");
+		}
 		// Vérificaton des paramètres
 		if (x < 0)
 			throw new CoordoneeException("position x inférieur à 0");
