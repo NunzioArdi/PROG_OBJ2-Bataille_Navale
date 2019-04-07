@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Exceptions.BateauException;
+import Exceptions.CaseException;
 import Exceptions.CoordoneeException;
 import Exceptions.DirectionException;
 
@@ -126,11 +127,11 @@ public class Grille implements Serializable {
 		// Vérificaton des paramètres
 		if (x < 0)
 			throw new CoordoneeException("position x inférieur à 0");
-		else if (x >= this.longueur)
+		if (x >= this.longueur)
 			throw new CoordoneeException("position x dépasse la taille de la grille");
-		else if (y < 0)
+		if (y < 0)
 			throw new CoordoneeException("position y inférieur à 0");
-		else if (y >= this.largeur)
+		if (y >= this.largeur)
 			throw new CoordoneeException("position y dépasse la taille de la grille");
 		if (!(dir == 0 || dir == 1))
 			throw new DirectionException("Mauvais paramère de direction");
@@ -140,7 +141,7 @@ public class Grille implements Serializable {
 			// Vérification dépassement
 			if (x >= this.longueur)
 				throw new CoordoneeException("le bateau dépasse la grille en x");
-			else if (y >= this.largeur)
+			if (y >= this.largeur)
 				throw new CoordoneeException("le bateau dépasse la grille en y");
 
 			Case tmp = new Case(x, y);
@@ -148,7 +149,7 @@ public class Grille implements Serializable {
 
 			// Vérification place libre
 			if (list.get(index).getBat() != null) {
-				throw new CoordoneeException("Un bateau est déjà sur la case" + x + " " + y);
+				throw new CoordoneeException("Un bateau est déjà sur la case " + x + " " + y);
 			}
 
 			tmp.setBat(b);
