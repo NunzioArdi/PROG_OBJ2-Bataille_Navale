@@ -37,7 +37,7 @@ public class PartieMono extends Partie {
 		boolean stop = false;
 		String pseudo = this.getPseudo();
 		
-		// Tant que coordonée incorrecte
+		// Tant que coordonées incorrectes
 		while (!stop) {
 			try {
 				this.setTailleGrille();
@@ -52,7 +52,6 @@ public class PartieMono extends Partie {
 		this.addBateauxJoueur(this.player);
 	}
 
-	@Override
 	public void lancerParie() {
 		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
@@ -62,12 +61,12 @@ public class PartieMono extends Partie {
 		while (player.isLife()&&!stop) {
 			int action = -1;
 			while (action != 0 && action != 1 && action != 2 && action != 3 && action != 4 && action!=5) {
-				System.out.println("Choisiser une action:\n" 
-						+ "\t1) Continuer à jouer\n" 
+				System.out.println("Choisisser une action:\n" 
+						+ "\t1) Lancer missile\n" 
 						+ "\t2) Sauvegarder"
-						+ "\t3) Afficher la vie Bateau"
-						+ "\t4) Affiche la taille des bateaux"
-						+ "\t5) Quitter");
+						+ "\t3) Afficher la vie des Bateaux"
+						+ "\t4) Afficher la taille des bateaux"
+						+ "\t5) Quitter (sans sauvegarder)");
 				try {
 					@SuppressWarnings("resource")
 					Scanner sc1 = new Scanner(System.in);
@@ -78,14 +77,19 @@ public class PartieMono extends Partie {
 			}
 			
 			if(action==1) {
-				System.out.println("Choisiser les coordonné du missile");
-				int posX = sc.nextInt();
-				int posY = sc.nextInt();
+				System.out.println("Choisiser les coordonnées du missile");
 				try {
+					Scanner sc1 = new Scanner(System.in);
+					int posX = sc1.nextInt();
+					int posY = sc1.nextInt();
 					player.attack(posX, posY);
+				}catch (InputMismatchException e) {
+					System.out.println(e + ": Un nombre est attendu.");
 				} catch (CoordoneeException e) {
 					e.printStackTrace();
 				} catch (CaseException e) {
+					e.printStackTrace();
+				} catch (BateauException e) {
 					e.printStackTrace();
 				}
 				System.out.println();
@@ -106,11 +110,8 @@ public class PartieMono extends Partie {
 			}
 			else if (action==5) {
 				stop=true;
-			}
-
-			
+			}	
 		}
-
 		System.out.println("Gagner");
 	}
 	

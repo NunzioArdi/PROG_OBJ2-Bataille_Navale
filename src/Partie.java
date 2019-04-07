@@ -9,7 +9,7 @@ import exceptions.CoordoneeException;
 import exceptions.DirectionException;
 
 /**
- * Classe abstraite donnant le modèle pour créer les différent mode de jeu.
+ * Classe abstraite donnant le modèle pour créer les différents modes de jeu.
  */
 public abstract class Partie implements Serializable {
 	/**
@@ -18,23 +18,24 @@ public abstract class Partie implements Serializable {
 	private static final long serialVersionUID = -4406769469769370072L;
 
 	/**
-	 * Attribut de la longueur de la grille
+	 * Attribut de la longueur de la grille.
 	 */
 	protected int x;
 
 	/**
-	 * Attribut de la largeur de la grille
+	 * Attribut de la largeur de la grille.
 	 */
 	protected int y;
 
 	/**
-	 * La liste des Bateaux que chaque joueur peux avoir
+	 * La liste des Bateaux que chaque joueur peut avoir
 	 */
 	protected List<Bateau> bateaux;
 
 	/**
-	 * Constructeur de la partie. Initialise la liste des modèle de bateaux.
-	 * @throws BateauException 
+	 * Constructeur de la partie. Initialise la liste des modèles de bateaux.
+	 * 
+	 * @throws BateauException
 	 */
 	public Partie() throws BateauException {
 		bateaux = new ArrayList<Bateau>();
@@ -44,7 +45,8 @@ public abstract class Partie implements Serializable {
 	/**
 	 * Méthode interne servant à remplir le modèle de la liste des bateaux que les
 	 * joueurs peuvent avoir.
-	 * @throws BateauException 
+	 * 
+	 * @throws BateauException
 	 */
 	private void list() throws BateauException {
 		bateaux.add(new Bateau("Porte-avions", 5));
@@ -55,19 +57,19 @@ public abstract class Partie implements Serializable {
 	}
 
 	/**
-	 * Méthode servant à ajouter au joueur désirer les bateaux aux coordonées
-	 * voulues par celui-ci.<br>
+	 * Méthode servant à ajouter au joueur choisi les bateaux aux coordonées voulues
+	 * par celui-ci.<br>
 	 * Des exceptions sont levées et ratrapppées tant que la direction et/ou les
 	 * coordonées indiquées seront invalides.
 	 * 
 	 * @param j Le joueur
-	 * @throws BateauException 
+	 * @throws BateauException
 	 */
 	protected void addBateauxJoueur(Joueur j) throws BateauException {
 		int i = 0;
 
 		while (i < this.bateaux.size()) {
-			System.out.println("Donner la direction du bateau: \n\tHorizontal=0\n\tVertical=1");
+			System.out.println("Donner la direction du bateau: \n\tHorizontale=0\n\tVerticale=1");
 
 			try {
 				@SuppressWarnings("resource")
@@ -93,7 +95,7 @@ public abstract class Partie implements Serializable {
 	}
 
 	/**
-	 * Méthode définisant la taille de la grille de jeu.
+	 * Méthode définisant la taille de la grille du jeu.
 	 */
 	protected void setTailleGrille() {
 		boolean stop = false;
@@ -117,11 +119,19 @@ public abstract class Partie implements Serializable {
 	protected String getPseudo() {
 		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
-		System.out.print("Donné votre pseudo : ");
+		System.out.print("Donner votre pseudo : ");
 		String tmp = sc.next();
 		return tmp;
 	}
 
+	/**
+	 * Donne la liste des Bateaux du joueur avec sa taille ou sa vie.
+	 * 
+	 * @param j    le joueur
+	 * @param type 1=vie, sinon taille
+	 * @return une chaine de caractères formatée avec le nom du bateau et sa vie ou
+	 *         sa taille
+	 */
 	public String AfficherListeBateau(Joueur j, int type) {
 		String res = "";
 		if (type == 1) {
@@ -139,16 +149,30 @@ public abstract class Partie implements Serializable {
 		return res;
 	}
 
-
 	/**
-	 * Méthode lancant la partie.
+	 * Méthode lancant la partie. Elle est déjà initialisée.
 	 */
 	public abstract void lancerParie();
-	
+
+	/**
+	 * Méthode initialisant une nouvelle partie.
+	 * 
+	 * @throws BateauException
+	 */
 	public abstract void initialiserPartie() throws BateauException;
 
+	/**
+	 * Méthode servant à restaurer les données d'une partie sauvegardée.
+	 * 
+	 * @param locate la position du fichier de sauvegarde
+	 */
 	public abstract void restaurerPartie(String locate);
-	
+
+	/**
+	 * Méthode servant à sauvegarder les données de la partie en cours.
+	 * 
+	 * @param locate la position du fichier de sauvegarde
+	 */
 	protected abstract void sauvegerderPartie(String locate);
 
 }

@@ -3,7 +3,7 @@ import java.util.Scanner;
 import exceptions.BateauException;
 
 /**
- * Classe principale lançant le jeu
+ * Classe principale lançant le jeu.
  */
 public class Principale {
 	@SuppressWarnings("resource")
@@ -34,7 +34,7 @@ public class Principale {
 		
 		if (txt.equals("OUI")) {
 			if (id == 1) {
-				System.out.println("Dans ce mode de jeu, le joueur place ces bateaux et doit les détruir pour gagner");
+				System.out.println("Dans ce mode de jeu, le joueur place ses bateaux et doit les détruire pour gagner\n");
 				Partie game = new PartieMono();
 				game.initialiserPartie();
 				game.lancerParie();
@@ -42,7 +42,7 @@ public class Principale {
 		} else {
 			if (id == 1) {
 				Partie game = new PartieMono();
-				System.out.println("Selectionner le fichier de sauvegarde correcpondant au mode de jeu choisis");
+				System.out.println("Selectionner le fichier de sauvegarde correcpondant au mode de jeu choisi");
 				String locate = sc.next();
 				game.restaurerPartie(locate);
 				game.lancerParie();

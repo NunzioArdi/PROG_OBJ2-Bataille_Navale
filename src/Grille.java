@@ -8,7 +8,7 @@ import exceptions.CoordoneeException;
 import exceptions.DirectionException;
 
 /**
- * Classe représentant une grille de combat. Une grille est composé de Cases.
+ * Classe représentant une grille de combat. Une grille est composée de Cases.
  */
 public class Grille implements Serializable {
 	/**
@@ -29,11 +29,11 @@ public class Grille implements Serializable {
 	private int largeur;
 
 	/**
-	 * Valeur arbitraire fixant la taille maximal de la grille
+	 * Valeur arbitraire fixant la taille maximale de la grille
 	 */
 	private final int MAX = 50;
 	/**
-	 * Valeur arbitraire fixant la taille minimal de la grille
+	 * Valeur arbitraire fixant la taille minimale de la grille
 	 */
 	private final int MIN = 10;
 
@@ -41,7 +41,7 @@ public class Grille implements Serializable {
 	 * Constructeur de la grille. Une grille est composée d'une liste de Cases. Elle
 	 * a une limite de taille minimum et maximum.
 	 * 
-	 * @param lon longueur
+	 * @param lon la longueur
 	 * @param lar la largeur
 	 * @throws CoordoneeException Cette Exception est levée si les valeurs de la
 	 *                            taille de Grille sont inférieurs au MIN ou
@@ -72,7 +72,7 @@ public class Grille implements Serializable {
 	}
 
 	/**
-	 * Méthode donnant l'index de la liste de Case de la Grille.
+	 * Méthode donnant l'index d'une Case de la liste de Cases.
 	 * 
 	 * @param x absisse
 	 * @param y ordonnée
@@ -108,7 +108,7 @@ public class Grille implements Serializable {
 	 * @param b   le bateau à ajouter
 	 * @param x   l'abscisse de la position
 	 * @param y   l'ordonnée de la position
-	 * @param dir la direction du bateau (0=horizontal/1=verticale)
+	 * @param dir la direction du bateau (0=horizontale/1=verticale)
 	 * @throws CoordoneeException Cette Exception est levée si les paramètres de
 	 *                            coordonnées donnés dépassent la taille maximum MAX
 	 *                            ou la taille minimum MIN de la Grille, si les
@@ -117,11 +117,11 @@ public class Grille implements Serializable {
 	 * @throws DirectionException Cette Exception est levée quand le paramètre de
 	 *                            direction donné n'est pas ce qui est attendu
 	 */
-	public void addBateau(Bateau b, int x, int y, int dir) throws CoordoneeException, DirectionException, BateauException {
-		if(b==null) {
+	public void addBateau(Bateau b, int x, int y, int dir)
+			throws CoordoneeException, DirectionException, BateauException {
+		if (b == null) {
 			throw new BateauException("Ajout d'un Bateau NULL");
-		}
-		else if(b.estMort()) {
+		} else if (b.estMort()) {
 			throw new BateauException("Ajout d'un Bateau mort");
 		}
 		// Vérificaton des paramètres
@@ -134,23 +134,34 @@ public class Grille implements Serializable {
 		if (y >= this.largeur)
 			throw new CoordoneeException("position y dépasse la taille de la grille");
 		if (!(dir == 0 || dir == 1))
-			throw new DirectionException("Mauvais paramère de direction");
+			throw new DirectionException("Mauvais paramètre de direction");
+
+		// Vérification de la place libre sur toute la place que prend le bateau
+		int tmpX = x;
+		int tmpY = y;
+		for (int i = 0; i < b.getTaille(); i++) {
+			// Vérification dépassement
+			if (tmpX >= this.longueur)
+				throw new CoordoneeException("le bateau dépasse la grille en x");
+			if (tmpY >= this.largeur)
+				throw new CoordoneeException("le bateau dépasse la grille en y");
+
+			// Vérification place libre
+			Case tmp = new Case(tmpY, tmpY);
+			int index = this.list.indexOf(tmp);
+			if (list.get(index).getBat() != null) {
+				throw new CoordoneeException("Un bateau est déjà sur la case " + tmpX + " " + tmpY);
+			}
+			if (dir == 1)
+				tmpY++;
+			else
+				tmpX++;
+		}
 
 		// Placement
 		for (int i = 0; i < b.getTaille(); i++) {
-			// Vérification dépassement
-			if (x >= this.longueur)
-				throw new CoordoneeException("le bateau dépasse la grille en x");
-			if (y >= this.largeur)
-				throw new CoordoneeException("le bateau dépasse la grille en y");
-
 			Case tmp = new Case(x, y);
 			int index = this.list.indexOf(tmp);
-
-			// Vérification place libre
-			if (list.get(index).getBat() != null) {
-				throw new CoordoneeException("Un bateau est déjà sur la case " + x + " " + y);
-			}
 
 			tmp.setBat(b);
 			list.set(index, tmp);
@@ -165,10 +176,10 @@ public class Grille implements Serializable {
 	 * Méthode qui met à jour une Case.
 	 * 
 	 * @param x   absisse
-	 * @param y   ordonee
-	 * @param tmp la nouvelle Case
-	 * @throws CoordoneeException 
-	 * @throws CaseException 
+	 * @param y   ordonée
+	 * @param c la nouvelle Case
+	 * @throws CoordoneeException
+	 * @throws CaseException
 	 */
 	public void setCase(int x, int y, Case c) throws CoordoneeException, CaseException {
 		if (x < 0)
@@ -179,9 +190,9 @@ public class Grille implements Serializable {
 			throw new CoordoneeException("position y inférieur à 0");
 		if (y >= this.largeur)
 			throw new CoordoneeException("position y dépasse la taille de la grille");
-		if(c==null)
+		if (c == null)
 			throw new CaseException("Set Case null");
-		
+
 		int i = this.list.indexOf(new Case(x, y));
 		this.list.set(i, c);
 	}

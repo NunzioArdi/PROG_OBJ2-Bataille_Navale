@@ -39,7 +39,7 @@ public class Joueur implements Serializable {
 	private String pseudo;
 
 	/**
-	 * Constructeur du Joueur avec ses 2 Grilles et 5 points de vie.
+	 * Constructeur du Joueur avec ses 2 Grilles et ses 5 points de vie.
 	 * 
 	 * @param x longeur grille
 	 * @param y largeur grille
@@ -57,7 +57,7 @@ public class Joueur implements Serializable {
 	}
 
 	/**
-	 * Méthode indique si le Joueur est toujours en vie.
+	 * Méthode indiquant si le Joueur est toujours en vie.
 	 * 
 	 * @return true si en vie
 	 */
@@ -68,13 +68,13 @@ public class Joueur implements Serializable {
 	}
 
 	/**
-	 * Méthode ajoutant un Bateau à la liste de Bateau du joueur et place se bateau
-	 * sur la Grille Bateau.
+	 * Méthode ajoutant un Bateau à la liste des Bateaux du joueur et place ce Bateau
+	 * sur la Grille bateau.
 	 * 
 	 * @param b   le bateau à ajouter
 	 * @param x   l'abscisse de la position
 	 * @param y   l'ordonnée de la position
-	 * @param dir la direction du bateau (0=horizontal/1=verticale)
+	 * @param dir la direction du bateau (0=horizontale/1=verticale)
 	 * @throws CoordoneeException Cette Exception est levée si les paramètres de
 	 *                            coordonnées donnés dépassent la taille maximum MAX
 	 *                            ou la taille minimum MIN de la Grille, si les
@@ -94,14 +94,15 @@ public class Joueur implements Serializable {
 	 * 
 	 * @param x l'abscisse de la position
 	 * @param y l'ordonnée de la position
-	 * @throws CoordoneeException Cette Exception est lancé si les coordonnées sont
-	 *                            sur une case déjà tirée
-	 * @throws CaseException 
+	 * @throws CoordoneeException Cette Exception est levée si les coordonnées sont
+	 *                            sur une Case déjà tirée
+	 * @throws CaseException Cette exception est levée quand on tente d'ajouter une Case null
+	 * @throws BateauException Cette exception est levée quand on tente d'ajouter un Bateau null 
 	 */
-	public void attack(int x, int y) throws CoordoneeException, CaseException {
+	public void attack(int x, int y) throws CoordoneeException, CaseException, BateauException {
 		Case tmp = this.tire.getCase(x, y);
 		if (tmp.isImpact()) {
-			throw new CoordoneeException("Zone déjà tiré");
+			throw new CoordoneeException("Zone déjà tirée");
 		} else {
 			tmp.setImpact();
 			Bateau b = this.bateau.getCase(x, y).getBat();
@@ -117,13 +118,13 @@ public class Joueur implements Serializable {
 	}
 
 	/**
-	 * Méthode triant les Bateaux par leur taille
+	 * Méthode triant les Bateaux par leur taille.
 	 */
 	public void triListeBateauTaille() {
 
 		/**
 		 * Classe interne de méthode servant de classe de comparaison pour la méthode
-		 * sort. Compare la taille des Bateaux et les trie par ordres décroissant.
+		 * sort. Compare la taille des Bateaux et les trie par ordres décroissants.
 		 */
 		class BateauTailleComparator implements Comparator<Bateau> {
 
@@ -143,13 +144,13 @@ public class Joueur implements Serializable {
 	}
 
 	/**
-	 * Méthode triant les Bateaux par leur taille
+	 * Méthode triant les Bateaux par leur vie.
 	 */
 	public void triListeBateauVie() {
 
 		/**
 		 * Classe interne de méthode servant de classe de comparaison pour la méthode
-		 * sort. Compare la vie des Bateaux et les trie par ordres décroissant.
+		 * sort. Compare la vie des Bateaux et les trie par ordres décroissants.
 		 */
 		class BateauVieComparator implements Comparator<Bateau> {
 

@@ -1,5 +1,7 @@
 import java.io.Serializable;
 
+import exceptions.BateauException;
+
 /**
  * Classe représentant les cases de la grille. Une Case peut avoir un bateau et un impact.
  */
@@ -44,9 +46,13 @@ public class Case implements Serializable {
 	/**
 	 * Méthode permettant de lier un Bateau à une case.
 	 * 
-	 * @param bat
+	 * @param bat le bateau
+	 * @throws BateauException Cette exception est levée quand on tente de mettre un bateau null.
 	 */
-	public void setBat(Bateau bat) {
+	public void setBat(Bateau bat) throws BateauException {
+		if(bat==null) {
+			throw new BateauException("Set Bateau Null");
+		}
 		this.bat = bat;
 	}
 
@@ -118,6 +124,8 @@ public class Case implements Serializable {
 	}
 
 	/**
+	 * Méthode retournant la position x.
+	 * 
 	 * @return the x
 	 */
 	public int getX() {
@@ -125,6 +133,8 @@ public class Case implements Serializable {
 	}
 
 	/**
+	 * Méthode retournant la position y.
+	 * 
 	 * @return the y
 	 */
 	public int getY() {
