@@ -1,7 +1,7 @@
 import java.io.Serializable;
 
 /**
- * Classe représentant les cases de la grille.
+ * Classe représentant les cases de la grille. Une Case peut avoir un bateau et un impact.
  */
 public class Case implements Serializable {
 	/**
@@ -115,5 +115,19 @@ public class Case implements Serializable {
 	 */
 	public void setImpact() {
 		this.impact = true;
+	}
+
+	/**
+	 * @return the x
+	 */
+	public int getX() {
+		return x;
+	}
+
+	/**
+	 * @return the y
+	 */
+	public int getY() {
+		return y;
 	}
 }
