@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-import Exceptions.BateauException;
+import exceptions.BateauException;
 
 /**
  * Classe principale lançant le jeu

@@ -8,9 +8,9 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
-import Exceptions.BateauException;
-import Exceptions.CaseException;
-import Exceptions.CoordoneeException;
+import exceptions.BateauException;
+import exceptions.CaseException;
+import exceptions.CoordoneeException;
 
 /**
  * Classe représentant une Partie en mono-joueur.

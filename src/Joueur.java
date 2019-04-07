@@ -4,10 +4,10 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import Exceptions.BateauException;
-import Exceptions.CaseException;
-import Exceptions.CoordoneeException;
-import Exceptions.DirectionException;
+import exceptions.BateauException;
+import exceptions.CaseException;
+import exceptions.CoordoneeException;
+import exceptions.DirectionException;
 
 /**
  * Classe représentant un joueur.

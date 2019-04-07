@@ -2,10 +2,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import Exceptions.BateauException;
-import Exceptions.CaseException;
-import Exceptions.CoordoneeException;
-import Exceptions.DirectionException;
+import exceptions.BateauException;
+import exceptions.CaseException;
+import exceptions.CoordoneeException;
+import exceptions.DirectionException;
 
 /**
  * Classe représentant une grille de combat. Une grille est composé de Cases.

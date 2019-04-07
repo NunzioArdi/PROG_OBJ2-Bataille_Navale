@@ -1,6 +1,6 @@
 import java.io.Serializable;
 
-import Exceptions.BateauException;
+import exceptions.BateauException;
 
 /**
  * Classe représentant les Bateaux

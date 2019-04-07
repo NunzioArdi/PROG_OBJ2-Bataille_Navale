@@ -2,10 +2,11 @@ import static org.junit.Assert.*;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-import Exceptions.BateauException;
-import Exceptions.CaseException;
-import Exceptions.CoordoneeException;
-import Exceptions.DirectionException;
+
+import exceptions.BateauException;
+import exceptions.CaseException;
+import exceptions.CoordoneeException;
+import exceptions.DirectionException;
 
 /**
  *Méthode de test pour la classe Grille
