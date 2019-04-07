@@ -172,4 +172,25 @@ public class Grille implements Serializable {
 		this.list.set(i, tmp);
 	}
 
+	/**
+	 * @return the list
+	 */
+	public List<Case> getList() {
+		return list;
+	}
+
+	/**
+	 * @return the longueur
+	 */
+	public int getLongueur() {
+		return longueur;
+	}
+
+	/**
+	 * @return the largeur
+	 */
+	public int getLargeur() {
+		return largeur;
+	}
+
 }
