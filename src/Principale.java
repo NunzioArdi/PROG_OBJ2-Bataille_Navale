@@ -1,4 +1,3 @@
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -13,9 +12,10 @@ public class Principale {
 		Scanner sc = new Scanner(System.in);
 
 		while (id != 1) {
+			//Les autres modes de jeu ne sont pas implémentés mais le Main est adapté pour les ajouter
 			System.out.println("Choisissez votre mode de jeu : " + "\n\t1) Mono-joueur");
 			try {
-				id = Integer.parseInt(sc.next());
+				id = Integer.parseInt(sc.next()); 
 				if (id != 1)
 					System.out.println("Mauvais paramètre");
 			} catch (NumberFormatException e) {
@@ -26,17 +26,13 @@ public class Principale {
 		}
 
 		System.out.print("Nouvelle partie (Oui ou Non) ?");
-		try {
-			while (!(txt.equals("OUI") || txt.equals("NON"))) {
-				txt = sc.next().toUpperCase();
-			}
-		} catch (InputMismatchException e) {
-			System.out.println(e + ": Une chaine de charactères est attendu\n");
+		while (!(txt.equals("OUI") || txt.equals("NON"))) {
+			txt = sc.next().toUpperCase();
 		}
-
+		
 		if (txt.equals("OUI")) {
 			if (id == 1) {
-				System.out.println("Dans e mode de jeu, le joueur place ces bateaux et doit les détruir pour gagner");
+				System.out.println("Dans ce mode de jeu, le joueur place ces bateaux et doit les détruir pour gagner");
 				Partie game = new PartieMono();
 				game.initialiserPartie();
 				game.lancerParie();
@@ -50,9 +46,7 @@ public class Principale {
 				game.lancerParie();
 			}
 		}
-
 	}
-
 }
 
 //javadoc */.java -d ../doc -encoding UTF-8 -docencoding UTF-8 -charset UTF-8 -html5
