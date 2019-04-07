@@ -5,6 +5,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import Exceptions.BateauException;
+import Exceptions.CaseException;
 import Exceptions.CoordoneeException;
 import Exceptions.DirectionException;
 
@@ -95,8 +96,9 @@ public class Joueur implements Serializable {
 	 * @param y l'ordonnée de la position
 	 * @throws CoordoneeException Cette Exception est lancé si les coordonnées sont
 	 *                            sur une case déjà tirée
+	 * @throws CaseException 
 	 */
-	public void attack(int x, int y) throws CoordoneeException {
+	public void attack(int x, int y) throws CoordoneeException, CaseException {
 		Case tmp = this.tire.getCase(x, y);
 		if (tmp.isImpact()) {
 			throw new CoordoneeException("Zone déjà tiré");

@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import Exceptions.BateauException;
+import Exceptions.CaseException;
 import Exceptions.CoordoneeException;
 
 /**
@@ -83,6 +84,8 @@ public class PartieMono extends Partie {
 				try {
 					player.attack(posX, posY);
 				} catch (CoordoneeException e) {
+					e.printStackTrace();
+				} catch (CaseException e) {
 					e.printStackTrace();
 				}
 				System.out.println();

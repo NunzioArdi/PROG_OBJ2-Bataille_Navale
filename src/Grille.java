@@ -166,10 +166,23 @@ public class Grille implements Serializable {
 	 * @param x   absisse
 	 * @param y   ordonee
 	 * @param tmp la nouvelle Case
+	 * @throws CoordoneeException 
+	 * @throws CaseException 
 	 */
-	public void setCase(int x, int y, Case tmp) {
+	public void setCase(int x, int y, Case c) throws CoordoneeException, CaseException {
+		if (x < 0)
+			throw new CoordoneeException("position x inférieur à 0");
+		if (x >= this.longueur)
+			throw new CoordoneeException("position x dépasse la taille de la grille");
+		if (y < 0)
+			throw new CoordoneeException("position y inférieur à 0");
+		if (y >= this.largeur)
+			throw new CoordoneeException("position y dépasse la taille de la grille");
+		if(c==null)
+			throw new CaseException("Set Case null");
+		
 		int i = this.list.indexOf(new Case(x, y));
-		this.list.set(i, tmp);
+		this.list.set(i, c);
 	}
 
 	/**
