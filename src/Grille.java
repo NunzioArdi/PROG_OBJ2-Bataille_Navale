@@ -28,6 +28,15 @@ public class Grille implements Serializable {
 	private int largeur;
 
 	/**
+	 * Valeur arbitraire fixant la taille maximal de la grille
+	 */
+	private final int MAX = 50;
+	/**
+	 * Valeur arbitraire fixant la taille minimal de la grille
+	 */
+	private final int MIN = 10;
+
+	/**
 	 * Constructeur de la grille. Une grille est composée d'une liste de Cases. Elle
 	 * a une limite de taille minimum et maximum.
 	 * 
@@ -39,14 +48,14 @@ public class Grille implements Serializable {
 	 */
 	public Grille(int lon, int lar) throws CoordoneeException {
 		// Vérification des paramètres
-		if (lon < 10) {
-			throw new CoordoneeException("longeur inférieur à 10 cases");
-		} else if (lon > 50) {
-			throw new CoordoneeException("longeur supérieur à 50 cases");
-		} else if (lar < 10) {
-			throw new CoordoneeException("largeur inférieur à 10 cases");
-		} else if (lar > 50) {
-			throw new CoordoneeException("largeur ssupérieur à 50 cases");
+		if (lon < MIN) {
+			throw new CoordoneeException("longeur inférieur à " + MIN + " cases");
+		} else if (lon > MAX) {
+			throw new CoordoneeException("longeur supérieur à " + MAX + " cases");
+		} else if (lar < MIN) {
+			throw new CoordoneeException("largeur inférieur à " + MIN + " cases");
+		} else if (lar > MAX) {
+			throw new CoordoneeException("largeur supérieur à " + MAX + " cases");
 		}
 
 		this.longueur = lon;
